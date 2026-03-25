@@ -1,6 +1,7 @@
-// ============================================
-// Change Password Page
-// ============================================
+import React from 'react';
+import { useAuth } from '../AuthContext';
+import ApiService from '../api';
+
 function ChangePasswordPage({ onNavigate }) {
     const { user } = useAuth();
     const [form, setForm] = React.useState({ current: '', newPass: '', confirm: '' });
@@ -70,3 +71,5 @@ function ChangePasswordPage({ onNavigate }) {
         </div>
     );
 }
+
+export default ChangePasswordPage;

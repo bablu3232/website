@@ -1,6 +1,23 @@
-// ============================================
-// Admin Dashboard Page
-// ============================================
+import React from 'react';
+import { useAuth } from '../AuthContext';
+import ApiService from '../api';
+import Chart from 'chart.js/auto';
+
+// Create a small wrapper for the legacy 'api' variable if still used in some parts
+const api = {
+    get: (url, config) => {
+        if (url === 'web_admin_parameters.php') return ApiService.getLabParameters();
+        if (url === 'web_admin_drugs.php') return ApiService.getAdminDrugs();
+        if (url === 'web_admin_reports.php') return ApiService.getAdminReports();
+        return Promise.reject('Legacy API GET mapping missing: ' + url);
+    },
+    post: (url, data) => {
+        if (url === 'admin_delete_parameter.php') return ApiService.adminDeleteParameter(data);
+        if (url === 'admin_delete_drug.php') return ApiService.adminDeleteDrug(data);
+        return Promise.reject('Legacy API POST mapping missing: ' + url);
+    }
+};
+
 function AdminDashboardPage({ onNavigate }) {
     const { logout } = useAuth();
     const [tab, setTab] = React.useState('overview');
@@ -419,3 +436,5 @@ function AdminDashboardPage({ onNavigate }) {
         </div>
     );
 }
+
+export default AdminDashboardPage;

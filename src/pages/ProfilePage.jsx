@@ -1,6 +1,7 @@
-// ============================================
-// Profile Page
-// ============================================
+import React from 'react';
+import { useAuth } from '../AuthContext';
+import ApiService, { API_BASE } from '../api';
+
 function ProfilePage({ onNavigate }) {
     const { user, login } = useAuth();
     const [editing, setEditing] = React.useState(false);
@@ -181,3 +182,5 @@ function ProfilePage({ onNavigate }) {
         </div>
     );
 }
+
+export default ProfilePage;

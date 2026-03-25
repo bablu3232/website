@@ -1,6 +1,5 @@
-// ============================================
-// About Page (also serves as FAQ & Privacy)
-// ============================================
+import React from 'react';
+
 function AboutPage({ onNavigate }) {
     const [tab, setTab] = React.useState('about');
 
@@ -78,3 +77,5 @@ function AboutPage({ onNavigate }) {
         </div>
     );
 }
+
+export default AboutPage;

@@ -1,6 +1,6 @@
-// ============================================
-// Report Detail Page
-// ============================================
+import React from 'react';
+import { EmptyState } from '../components/Common';
+
 function ReportDetailPage({ onNavigate, data }) {
     if (!data) return <div className="page-content"><EmptyState icon="description" title="No Report Selected" description="Go back to history and select a report." /></div>;
 
@@ -144,3 +144,5 @@ function ReportDetailPage({ onNavigate, data }) {
         </div>
     );
 }
+
+export default ReportDetailPage;

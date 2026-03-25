@@ -8,10 +8,20 @@ import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
-// Note: Other pages will be imported as they are refactored
-// import ForgotPasswordPage from './pages/ForgotPasswordPage';
-// import UploadReportPage from './pages/UploadReportPage';
-// ... etc
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import AdminLoginPage from './pages/AdminLoginPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
+import UploadReportPage from './pages/UploadReportPage';
+import ReviewValuesPage from './pages/ReviewValuesPage';
+import ReportAnalysisPage from './pages/ReportAnalysisPage';
+import ReportHistoryPage from './pages/ReportHistoryPage';
+import ReportDetailPage from './pages/ReportDetailPage';
+import ManualEntryPage from './pages/ManualEntryPage';
+import DrugSearchPage from './pages/DrugSearchPage';
+import DrugDetailPage from './pages/DrugDetailPage';
+import ProfilePage from './pages/ProfilePage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
     const { isLoggedIn, isAdmin, logout, user } = useAuth();
@@ -77,11 +87,12 @@ function App() {
         'report-analysis': 'Analysis', 'history': 'Report History', 'report-detail': 'Report Detail',
         'manual-entry': 'Manual Entry', 'drug-search': 'Drug Search', 'drug-detail': 'Drug Detail',
         'profile': 'Profile', 'change-password': 'Change Password', 'about': 'About',
+        'admin-dashboard': 'Admin Dashboard',
     };
 
     const authPages = ['login', 'register', 'forgot-password', 'admin-login'];
     const isAuthPage = authPages.includes(page);
-    const isAdminPage = page === 'admin-dashboard';
+    const isAdminDashboard = page === 'admin-dashboard';
     const isLandingPage = page === 'landing';
 
     if (isLandingPage) {
@@ -99,7 +110,17 @@ function App() {
                 <ToastContainer toasts={toasts} removeToast={removeToast} />
                 {page === 'login' && <LoginPage onNavigate={navigate} />}
                 {page === 'register' && <RegisterPage onNavigate={navigate} />}
-                {/* Add other auth pages here */}
+                {page === 'forgot-password' && <ForgotPasswordPage onNavigate={navigate} />}
+                {page === 'admin-login' && <AdminLoginPage onNavigate={navigate} />}
+            </>
+        );
+    }
+
+    if (isAdminDashboard) {
+        return (
+            <>
+                <ToastContainer toasts={toasts} removeToast={removeToast} />
+                <AdminDashboardPage onNavigate={navigate} />
             </>
         );
     }
@@ -122,7 +143,17 @@ function App() {
                         onMenuClick={() => setSidebarOpen(!sidebarOpen)}
                     />
                     {page === 'dashboard' && <DashboardPage onNavigate={navigate} />}
-                    {/* Add other pages here as they are refactored */}
+                    {page === 'upload' && <UploadReportPage onNavigate={navigate} />}
+                    {page === 'review-values' && <ReviewValuesPage onNavigate={navigate} data={pageData} />}
+                    {page === 'report-analysis' && <ReportAnalysisPage onNavigate={navigate} data={pageData} />}
+                    {page === 'history' && <ReportHistoryPage onNavigate={navigate} />}
+                    {page === 'report-detail' && <ReportDetailPage onNavigate={navigate} data={pageData} />}
+                    {page === 'manual-entry' && <ManualEntryPage onNavigate={navigate} />}
+                    {page === 'drug-search' && <DrugSearchPage onNavigate={navigate} />}
+                    {page === 'drug-detail' && <DrugDetailPage onNavigate={navigate} data={pageData} />}
+                    {page === 'profile' && <ProfilePage onNavigate={navigate} />}
+                    {page === 'change-password' && <ChangePasswordPage onNavigate={navigate} />}
+                    {page === 'about' && <AboutPage onNavigate={navigate} />}
                 </div>
             </div>
         </>

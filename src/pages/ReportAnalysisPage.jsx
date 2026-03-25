@@ -1,6 +1,7 @@
-// ============================================
-// Report Analysis Page
-// ============================================
+import React from 'react';
+import ApiService from '../api';
+import { StatusBadge, EmptyState } from '../components/Common';
+
 function ReportAnalysisPage({ onNavigate, data }) {
     const [activeTab, setActiveTab] = React.useState('overview');
 
@@ -156,3 +157,5 @@ function ReportAnalysisPage({ onNavigate, data }) {
         </div>
     );
 }
+
+export default ReportAnalysisPage;

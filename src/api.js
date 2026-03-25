@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = '/api/';
+export const API_BASE = '/api/';
 
 const api = axios.create({
     baseURL: API_BASE,
@@ -76,7 +76,7 @@ const ApiService = {
         api.get('admin_users.php'),
 
     getAdminReports: () =>
-        api.get('admin_reports.php'),
+        api.get('web_admin_reports.php'),
 
     getAdminUserStats: (userId) =>
         api.get('admin_user_stats.php', { params: { user_id: userId } }),
@@ -89,6 +89,15 @@ const ApiService = {
 
     getLabParameters: () =>
         api.get('web_admin_parameters.php'),
+
+    adminDeleteParameter: (data) =>
+        api.post('admin_delete_parameter.php', data),
+
+    adminDeleteDrug: (data) =>
+        api.post('admin_delete_drug.php', data),
+
+    getAdminDrugs: () =>
+        api.get('web_admin_drugs.php'),
 };
 
 export default ApiService;

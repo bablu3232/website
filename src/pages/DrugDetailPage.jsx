@@ -1,6 +1,6 @@
-// ============================================
-// Drug Detail Page
-// ============================================
+import React from 'react';
+import { EmptyState } from '../components/Common';
+
 function DrugDetailPage({ onNavigate, data }) {
     if (!data) return <div className="page-content"><EmptyState icon="medication" title="No Drug Selected" description="Go back to search and select a drug." /></div>;
 
@@ -42,3 +42,5 @@ function DrugDetailPage({ onNavigate, data }) {
         </div>
     );
 }
+
+export default DrugDetailPage;

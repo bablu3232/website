@@ -1,6 +1,7 @@
-// ============================================
-// Manual Entry Page
-// ============================================
+import React from 'react';
+import { useAuth } from '../AuthContext';
+import ApiService from '../api';
+
 function ManualEntryPage({ onNavigate }) {
     const { user } = useAuth();
     const [step, setStep] = React.useState(1);
@@ -125,3 +126,5 @@ function ManualEntryPage({ onNavigate }) {
         </div>
     );
 }
+
+export default ManualEntryPage;

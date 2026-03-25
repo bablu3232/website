@@ -1,6 +1,8 @@
-// ============================================
-// Report History Page
-// ============================================
+import React from 'react';
+import { useAuth } from '../AuthContext';
+import ApiService from '../api';
+import { LoadingSpinner, EmptyState } from '../components/Common';
+
 function ReportHistoryPage({ onNavigate }) {
     const { user } = useAuth();
     const [reports, setReports] = React.useState([]);
@@ -65,3 +67,5 @@ function ReportHistoryPage({ onNavigate }) {
         </div>
     );
 }
+
+export default ReportHistoryPage;

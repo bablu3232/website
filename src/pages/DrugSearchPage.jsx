@@ -1,6 +1,7 @@
-// ============================================
-// Drug Search Page
-// ============================================
+import React from 'react';
+import ApiService from '../api';
+import { LoadingSpinner, EmptyState } from '../components/Common';
+
 function DrugSearchPage({ onNavigate }) {
     const [query, setQuery] = React.useState('');
     const [category, setCategory] = React.useState('');
@@ -90,3 +91,5 @@ function DrugSearchPage({ onNavigate }) {
         </div>
     );
 }
+
+export default DrugSearchPage;

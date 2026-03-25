@@ -1,6 +1,6 @@
-// ============================================
-// Forgot Password Page (OTP Flow)
-// ============================================
+import React from 'react';
+import ApiService from '../api';
+
 function ForgotPasswordPage({ onNavigate }) {
     const [step, setStep] = React.useState(1); // 1: email, 2: OTP, 3: new password
     const [email, setEmail] = React.useState('');
@@ -109,3 +109,5 @@ function ForgotPasswordPage({ onNavigate }) {
         </div>
     );
 }
+
+export default ForgotPasswordPage;

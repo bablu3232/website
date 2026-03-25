@@ -1,6 +1,7 @@
-// ============================================
-// Upload Report Page
-// ============================================
+import React from 'react';
+import { useAuth } from '../AuthContext';
+import ApiService from '../api';
+
 function UploadReportPage({ onNavigate }) {
     const { user } = useAuth();
     const [file, setFile] = React.useState(null);
@@ -137,3 +138,5 @@ function UploadReportPage({ onNavigate }) {
         </div>
     );
 }
+
+export default UploadReportPage;
