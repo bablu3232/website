@@ -7,14 +7,19 @@ function RegisterPage({ onNavigate }) {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!fullName || !email || !password || !phone) {
+        if (!fullName || !email || !password || !confirmPassword || !phone) {
             setError('Please fill in all fields');
+            return;
+        }
+        if (password !== confirmPassword) {
+            setError('Passwords do not match');
             return;
         }
         setLoading(true);
@@ -24,12 +29,13 @@ function RegisterPage({ onNavigate }) {
                 full_name: fullName,
                 email,
                 password,
+                confirm_password: confirmPassword,
                 phone,
                 date_of_birth: '', // Default values for now
                 gender: ''
             });
             const data = res.data;
-            if (data.status === 'success') {
+            if (data.status === 'success' || (data.message && data.message.includes('successfully'))) {
                 login({
                     userId: data.user_id,
                     fullName,
@@ -41,10 +47,12 @@ function RegisterPage({ onNavigate }) {
                 setError(data.message || 'Registration failed');
             }
         } catch (err) {
-            setError('Connection error. Please try again.');
+            const msg = err.response?.data?.message || 'Connection error. Please try again.';
+            setError(msg);
         }
         setLoading(false);
     };
+
 
     return (
         <div className="auth-split">
@@ -72,6 +80,11 @@ function RegisterPage({ onNavigate }) {
                             <label className="form-label">Password</label>
                             <input className="form-input" type="password" placeholder="Create a password" value={password} onChange={e => setPassword(e.target.value)} />
                         </div>
+                        <div className="form-group">
+                            <label className="form-label">Confirm Password</label>
+                            <input className="form-input" type="password" placeholder="Confirm your password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                        </div>
+
                         <button className="btn btn-primary btn-full btn-lg" type="submit" disabled={loading}>
                             {loading ? 'Creating Account...' : 'Sign Up'}
                         </button>
